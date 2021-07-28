@@ -7,4 +7,11 @@
 
 <!yatt:action bar>
 print "This is a perl code\n";
+
+<!yatt:page foo a b>
+<yatt:bar a b='xx'/>
+
+<!yatt:widget baz a b>
+<h2>&yatt:a;</h2>
+&yatt:b;
 ```
