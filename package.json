@@ -1,0 +1,26 @@
+{
+  "name": "highlightjs-yatt_lite",
+  "version": "1.0.0",
+  "description": "highlight.js syntax definition for yatt_lite",
+  "main": "yatt_lite.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkoba/highlightjs-yatt_lite.git"
+  },
+  "keywords": [
+    "highlightjs",
+    "syntax",
+    "yatt",
+    "yatt_lite",
+    "perl"
+  ],
+  "author": "buribullet@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hkoba/highlightjs-yatt_lite/issues"
+  },
+  "homepage": "https://github.com/hkoba/highlightjs-yatt_lite#readme"
+}
