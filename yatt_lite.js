@@ -10,6 +10,18 @@ Website: https://github.com/hkoba/highlightjs-yatt_lite
 'use strict';
 
 function hljsDefineYattLite(hljs) {
+  // XXX: namespace customization
+  const yattDeclaration = (className, keywords, starts) => {
+    const begin = new RegExp(`<!yatt:(${keywords.join('|')})\\b`);
+    return {
+      className, scope: className,
+      begin, end: />\n/, returnBegin: true,
+      scope: 'declaration', className: 'yatt-declaration',
+      subLanguage: 'xml',
+      starts: {...starts, end: /^(?=<!yatt:)/, returnEnd: true}
+    }
+  };
+
   return {
     name: "yatt_lite",
     subLanguage: 'xml',
@@ -17,30 +29,18 @@ function hljsDefineYattLite(hljs) {
       hljs.COMMENT(
         /<!--#yatt\b/, /-->/
       ),
-      {
-        scope: 'yatt-widget',
-        begin: /^<!yatt:(widget|page|args)\b[^>]*>\n/s,
-        end: /^(?=<!yatt:)/, excludeEnd: true,
-        subLanguage: 'xml'
-      },
-      {
-        scope: 'yatt-action-perl',
-        begin: /^<!yatt:action\b[^>]*>\n/s, excludeBegin: true,
-        end: /^(?=<!yatt:)/, excludeEnd: true,
-        subLanguage: 'perl'
-      },
-      {
-        scope: 'yatt-entity-perl',
-        begin: /^<!yatt:entity\b[^>]*>\n/s, excludeBegin: true,
-        end: /^(?=<!yatt:)/, excludeEnd: true,
-        subLanguage: 'perl'
-      }
+      yattDeclaration(
+        'yatt-widget', ['widget', 'page', 'args'],
+        {subLanguage: 'xml'}
+      ),
+      yattDeclaration(
+        'yatt-action-perl', ['action'],
+        {subLanguage: 'perl'}
+      ),
     ]
   }
 }
 
 if (typeof exports === 'object' && typeof module !== 'undefined') {
-  module.exports = function(hljs) {
-    hljs.registerLanguage('yatt_lite', hljsDefineYattLite);
-  }
+  module.exports = hljsDefineYattLite;
 }

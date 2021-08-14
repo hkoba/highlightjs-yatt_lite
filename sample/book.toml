@@ -7,4 +7,4 @@ title = "highlightjs-yatt_lite sample"
 
 [output.html]
 additional-js = ['yatt_lite.js', 'register_yatt_lite.js']
-
+additional-css = ['yatt_lite.css']
