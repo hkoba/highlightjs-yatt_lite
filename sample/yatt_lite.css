@@ -1,4 +1,9 @@
-span.hljs-yatt-declaration {
+.language-yatt_lite.hljs span.hljs-yatt-declaration {
     display: block;
     background-color: #ede5fb;
+}
+
+.language-yatt_lite.hljs span.hljs-yatt-payload-perl {
+    display: block;
+    background-color: #e0e0e0;
 }
