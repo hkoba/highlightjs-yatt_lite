@@ -13,12 +13,18 @@ function hljsDefineYattLite(hljs) {
   // XXX: namespace customization
   const yattDeclaration = (className, keywords, starts) => {
     const begin = new RegExp(`<!yatt:(${keywords.join('|')})\\b`);
+    const payloadClass = 'yatt-payload-' + starts.subLanguage;
     return {
-      className, scope: className,
       begin, end: />\n/, returnBegin: true,
       scope: 'declaration', className: 'yatt-declaration',
       subLanguage: 'xml',
-      starts: {...starts, end: /^(?=<!yatt:)/, returnEnd: true}
+      starts: {
+        begin: /^/, end: /^(?=<!yatt:)/, returnEnd: true,
+        className: payloadClass, scope: payloadClass,
+        contains: [
+          {...starts, endsWithParent: true}
+        ]
+      }
     }
   };
 
